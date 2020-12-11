@@ -84,6 +84,8 @@ public class DynamicArray<T> implements List<T> {
     }
 
     public String toString() {
+        if (size() == 0)
+            return "[]";
         String string = "[ ";
         for (int i = 0; i < data.length; i++)
             if (i == (data.length - 1))
