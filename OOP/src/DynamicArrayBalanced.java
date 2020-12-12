@@ -121,4 +121,8 @@ public class DynamicArrayBalanced<T> implements List<T> {
                 return false;
         return true;
     }
+
+    public Iterator<T> iterator() {
+        return new DynamicArrayBalancedIterator<T>(this);
+    }
 }

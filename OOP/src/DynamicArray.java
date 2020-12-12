@@ -103,4 +103,8 @@ public class DynamicArray<T> implements List<T> {
                 return false;
         return true;
     }
+
+    public Iterator<T> iterator() {
+        return new DynamicArrayIterator<T>(this);
+    }
 }

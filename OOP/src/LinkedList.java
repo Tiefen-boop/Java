@@ -1,4 +1,4 @@
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T> implements List<T>{
     //fields
     private Link<T> first;
 
@@ -51,7 +51,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     public void add(int index, T element) {
-        if (!rangeCheck(index) | element == null)
+        if (element == null || !rangeCheck(index))
             return;
         Link<T> addition = new Link<T>(element);
         if (index == 0){
@@ -153,5 +153,9 @@ public class LinkedList<T> implements List<T> {
         for (Link<T> curr = first; curr != null; curr = curr.getNext())
             rev.addFirst(curr.getData());
         first = rev.first;
+    }
+
+    public Iterator<T> iterator() {
+        return new LinkedListIterator<T>(this);
     }
 }

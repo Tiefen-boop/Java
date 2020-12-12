@@ -1,4 +1,4 @@
-public interface List <T> {
+public interface List <T> extends Iterable<T> {
     //Returns the number of elements in this list.
     public int size();
     //Appends the specified element to the end of this list
