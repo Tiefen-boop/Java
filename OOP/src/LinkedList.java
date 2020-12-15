@@ -156,6 +156,6 @@ public class LinkedList<T> implements List<T>{
     }
 
     public Iterator<T> iterator() {
-        return new LinkedListIterator<T>(this);
+        return new LinkedListIterator<>(first);
     }
 }
