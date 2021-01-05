@@ -1,6 +1,6 @@
 public class BinaryTree<T> {
     //fields
-    private BinaryTreeNode<T> root;
+    protected BinaryTreeNode<T> root;
 
     //constructors
     public BinaryTree(){
@@ -56,9 +56,20 @@ public class BinaryTree<T> {
             return root.toString();
         return "";
     }
-    /*
-    public Iterator<T> iterator(){
 
+    public Iterator<T> iterator(){
+        return inOrderIterator();
     }
-     */
+
+    public Iterator<T> inOrderIterator(){
+        return new BinaryTreeInOrderIterator<>(root);
+    }
+
+    public Iterator<T> preOrderIterator(){
+        return new BinaryTreePreOrderIterator<>(root);
+    }
+
+    public Iterator<T> postOrderIterator(){
+        return new BinaryTreePostOrderIterator<>(root);
+    }
 }

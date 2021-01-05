@@ -1,8 +1,8 @@
 public class BinaryTreeNode<T> {
     //fields
-    private T data;
-    private BinaryTreeNode<T> left;
-    private BinaryTreeNode<T> right;
+    protected T data;
+    protected BinaryTreeNode<T> left;
+    protected BinaryTreeNode<T> right;
 
     //constructors
     public BinaryTreeNode(T data) {
@@ -129,11 +129,16 @@ public class BinaryTreeNode<T> {
     }
 
     public String toString() {
-        String str = data.toString();
-        if (left != null)
-            str = str + left.toString();
+        return toString("") + "\n";
+    }
+
+    protected String toString(String depth) {
+        String ans = "";
         if (right != null)
-            str = str + right.toString();
-        return str;
+            ans = ans + right.toString(depth + "  ") + "\n";
+        ans = ans + depth + data;
+        if (left != null)
+            ans = ans + "\n" + left.toString(depth + "  ");
+        return ans;
     }
 }
