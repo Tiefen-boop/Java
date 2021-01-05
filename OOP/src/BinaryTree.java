@@ -72,4 +72,8 @@ public class BinaryTree<T> {
     public Iterator<T> postOrderIterator(){
         return new BinaryTreePostOrderIterator<>(root);
     }
+
+    public Iterator<T> bfsIterator(){
+        return new BinaryTreeBFSIterator<>(root);
+    }
 }
