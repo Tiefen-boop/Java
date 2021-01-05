@@ -4,7 +4,7 @@ public class SetAsDynamicArray<T> implements Set<T> {
 
     //constructors
     public SetAsDynamicArray(){
-         data = new DynamicArrayBalanced<T>();
+         data = new DynamicArrayBalanced<>();
     }
 
     //copy constructor

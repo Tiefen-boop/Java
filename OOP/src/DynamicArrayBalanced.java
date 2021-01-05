@@ -96,7 +96,7 @@ public class DynamicArrayBalanced<T> implements List<T> {
     }
 
     public boolean remove(T element) {
-        if (element == null || !contains(element))
+        if (element == null)
             return false;
         for (int i = 0; i < size; i++)
             if (data[i].equals(element)){
@@ -107,6 +107,17 @@ public class DynamicArrayBalanced<T> implements List<T> {
                 return true;
             }
         return false;
+    }
+
+    @Override
+    public T remove(int index) {
+        if (!rangeCheck(index))
+            throw new IllegalArgumentException("Illegal index");
+        T returnData = (T) data[index];
+        for (int i = index; i < size()-1; i = i + 1)
+            data[i] = data[i+1];
+        size = size - 1;
+        return returnData;
     }
 
     public boolean contains(T element) {

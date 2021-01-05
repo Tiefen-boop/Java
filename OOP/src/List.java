@@ -11,6 +11,8 @@ public interface List <T> extends Iterable<T> {
     public T get(int index);
     //Removes the first occurrence of the specified element from this list, if it is present
     public boolean remove(T element);
+    //Removes the element at position i and returns it
+    public T remove(int index);
     //Returns true if this list contains the specified element.
     public boolean contains(T element);
     //Returns true if this list contains no elements.

@@ -121,6 +121,26 @@ public class LinkedList<T> implements List<T>{
         return true;
     }
 
+    @Override
+    public T remove(int index) {
+        if (!rangeCheck(index))
+            throw new IllegalArgumentException("Illegal index");
+        if (index == 0){
+            T returnData = first.getData();
+            first = first.getNext();
+            return returnData;
+        }
+        index--;
+        Link<T> curr = first;
+        while (index!=0){
+            curr = curr.getNext();
+            index--;
+        }
+        T returnData = curr.getNext().getData();
+        curr.setNext(curr.getNext().getNext());
+        return returnData;
+    }
+
     public boolean contains(T element) {
         if (element == null)
             return false;

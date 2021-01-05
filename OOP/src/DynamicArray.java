@@ -21,6 +21,7 @@ public class DynamicArray<T> implements List<T> {
             return true;
         return false;
     }
+
     public int size() {
         return data.length;
     }
@@ -62,8 +63,6 @@ public class DynamicArray<T> implements List<T> {
     }
 
     public boolean remove(T element) {
-        if (!contains(element))
-            return false;
         Object[] temp = new Object[data.length-1];
         int i = 0;
         while (!data[i].equals(element)){
@@ -74,7 +73,28 @@ public class DynamicArray<T> implements List<T> {
             temp[i] = data[i+1];
             i++;
         }
+        data = temp;
         return true;
+    }
+
+    @Override
+    public T remove(int index) {
+        if (!rangeChecker(index))
+            throw new IllegalArgumentException("Illegal index");
+        Object[] temp = new Object[data.length-1];
+        int i = 0;
+        while (i<index){
+            temp[i] = data[i];
+            i++;
+        }
+        T returnData = (T) data[i];
+        i++;
+        while (i< data.length){
+            temp[i] = data[i+1];
+            i++;
+        }
+        data = temp;
+        return returnData;
     }
 
     public boolean contains(T element) {

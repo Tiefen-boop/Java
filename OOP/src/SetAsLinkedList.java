@@ -4,7 +4,7 @@ public class SetAsLinkedList<T> implements Set<T> {
 
     //constructors
     public SetAsLinkedList(){
-        data = new LinkedList<T>();
+        data = new LinkedList<>();
     }
 
     //copy constructor
