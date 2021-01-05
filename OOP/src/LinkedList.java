@@ -11,8 +11,12 @@ public class LinkedList<T> implements List<T>{
         this.first = first;
     }
 
-    public LinkedList(LinkedList<T> linkedList){
-        first = linkedList.first;
+    //copy constructor
+    public LinkedList(List<T> list){
+        first = null;
+        Iterator<T> iterator = list.iterator();
+        while (iterator.hasNext())
+            add(iterator().next());
     }
 
     //methods

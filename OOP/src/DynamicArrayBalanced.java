@@ -8,6 +8,12 @@ public class DynamicArrayBalanced<T> implements List<T> {
     private int incrementSize;
 
     //constructors
+    public DynamicArrayBalanced(){
+        data = new Object[DEFAULT_CAPACITY];
+        size = 0;
+        incrementSize = DEFAULT_CAPACITY;
+    }
+
     public DynamicArrayBalanced (int initialCapacity){
         if (initialCapacity <= 0)
             throw new IllegalArgumentException("initialCapacity has to be positive");
@@ -16,10 +22,25 @@ public class DynamicArrayBalanced<T> implements List<T> {
         incrementSize = initialCapacity;
     }
 
-    public DynamicArrayBalanced(){
+    //copy constructors
+    public DynamicArrayBalanced(List<T> list){
         data = new Object[DEFAULT_CAPACITY];
         size = 0;
         incrementSize = DEFAULT_CAPACITY;
+        Iterator<T> iterator = list.iterator();
+        while (iterator.hasNext())
+            add(iterator().next());
+    }
+
+    public DynamicArrayBalanced(List<T> list, int initialCapacity){
+        if (initialCapacity <= 0)
+            throw new IllegalArgumentException("initialCapacity has to be positive");
+        data = new Object[initialCapacity];
+        size = 0;
+        incrementSize = initialCapacity;
+        Iterator<T> iterator = list.iterator();
+        while (iterator.hasNext())
+            add(iterator().next());
     }
 
     public int size() {

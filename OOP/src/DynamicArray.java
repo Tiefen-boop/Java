@@ -7,6 +7,14 @@ public class DynamicArray<T> implements List<T> {
         data = new Object[0];
     }
 
+    //copy constructor
+    public DynamicArray(List<T> list){
+        data = new Object[0];
+        Iterator<T> iterator = list.iterator();
+        while (iterator.hasNext())
+            add(iterator().next());
+    }
+
     //methods
     private boolean rangeChecker(int index){
         if (index >= 0 & index < data.length)
