@@ -8,11 +8,11 @@ public class DynamicArray<T> implements List<T> {
     }
 
     //copy constructor
-    public DynamicArray(List<T> list){
+    public DynamicArray(List<T> other){
         data = new Object[0];
-        Iterator<T> iterator = list.iterator();
-        while (iterator.hasNext())
-            add(iterator().next());
+        Iterator<T> otherIterator = other.iterator();
+        while (otherIterator.hasNext())
+            add(otherIterator.next());
     }
 
     //methods
@@ -103,11 +103,11 @@ public class DynamicArray<T> implements List<T> {
         return string + "]";
     }
 
-    public boolean equals(DynamicArray<T> other) {
-        if (other == null || data.length != other.data.length)
+    public boolean equals(Object other) {
+        if (!(other instanceof DynamicArray<?>) || ((DynamicArray<?>) other).size() != size())
             return false;
         for (int i = 0; i < data.length; i++)
-            if (!data[i].equals(other.data[i]))
+            if (!data[i].equals(((DynamicArray<?>) other).data[i]))
                 return false;
         return true;
     }

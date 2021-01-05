@@ -12,11 +12,11 @@ public class LinkedList<T> implements List<T>{
     }
 
     //copy constructor
-    public LinkedList(List<T> list){
+    public LinkedList(List<T> other){
         first = null;
-        Iterator<T> iterator = list.iterator();
-        while (iterator.hasNext())
-            add(iterator().next());
+        Iterator<T> otherIterator = other.iterator();
+        while (otherIterator.hasNext())
+            add(otherIterator.next());
     }
 
     //methods
@@ -143,11 +143,13 @@ public class LinkedList<T> implements List<T>{
         return first.toString();
     }
 
-    public boolean equals(LinkedList<T> other) {
-        if (other == null || size() != other.size())
+    public boolean equals(Object other) {
+        if (!(other instanceof LinkedList<?>) || ((LinkedList<?>) other).size() != size())
             return false;
-        for (Link<T> curr = first, otherCurr = other.first; curr != null; curr = curr.getNext(), otherCurr = otherCurr.getNext())
-            if (!curr.getData().equals(otherCurr.getData()))
+        Iterator<T> iterator = iterator();
+        Iterator<?> otherIterator = ((LinkedList<?>) other).iterator();
+        while (iterator.hasNext())
+            if (!iterator.next().equals(otherIterator.next()))
                 return false;
         return true;
     }

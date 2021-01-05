@@ -1,15 +1,15 @@
-public class SetAsLinkedList<T> implements Set<T> {
+public class SetAsDynamicArray<T> implements Set<T> {
     //fields
-    private List<T> linkedList;
+    private List<T> dynamicArray;
 
     //constructors
-    public SetAsLinkedList(){
-        linkedList = new LinkedList<T>();
+    public SetAsDynamicArray(){
+         dynamicArray = new DynamicArrayBalanced<T>();
     }
 
     //copy constructor
-    public SetAsLinkedList(Set<T> other){
-        linkedList = new LinkedList<T>();
+    public SetAsDynamicArray(Set<T> other){
+        dynamicArray = new DynamicArrayBalanced<T>();
         Iterator<T> otherIterator = other.iterator();
         while (otherIterator.hasNext())
             add(otherIterator.next());
@@ -17,22 +17,22 @@ public class SetAsLinkedList<T> implements Set<T> {
 
     //methods
     public Iterator<T> iterator() {
-        return linkedList.iterator();
+        return dynamicArray.iterator();
     }
 
     public int size() {
-        return linkedList.size();
+        return dynamicArray.size();
     }
 
     public boolean add(T element) {
-        if (linkedList.contains(element))
+        if (dynamicArray.contains(element))
             return false;
-        linkedList.add(element);
+        dynamicArray.add(element);
         return true;
     }
 
     public boolean contains(T element) {
-        return linkedList.contains(element);
+        return dynamicArray.contains(element);
     }
 
     public boolean remove(T element) {
@@ -40,14 +40,14 @@ public class SetAsLinkedList<T> implements Set<T> {
     }
 
     public boolean isEmpty() {
-        return linkedList.isEmpty();
+        return dynamicArray.isEmpty();
     }
 
     public boolean equals(Object other){
-        if (!(other instanceof SetAsLinkedList<?> || ((SetAsLinkedList<?>) other).size() != size()))
+        if (!(other instanceof SetAsDynamicArray<?> || ((SetAsDynamicArray<?>) other).size() != size()))
             return false;
         Iterator<T> iterator = iterator();
-        Iterator<?> otherIterator = ((LinkedList<?>) other).iterator();
+        Iterator<?> otherIterator = ((SetAsDynamicArray<?>) other).iterator();
         while (iterator.hasNext())
             if (!iterator.next().equals(otherIterator.next()))
                 return false;

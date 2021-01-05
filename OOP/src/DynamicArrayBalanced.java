@@ -23,13 +23,13 @@ public class DynamicArrayBalanced<T> implements List<T> {
     }
 
     //copy constructors
-    public DynamicArrayBalanced(List<T> list){
+    public DynamicArrayBalanced(List<T> other){
         data = new Object[DEFAULT_CAPACITY];
         size = 0;
         incrementSize = DEFAULT_CAPACITY;
-        Iterator<T> iterator = list.iterator();
-        while (iterator.hasNext())
-            add(iterator().next());
+        Iterator<T> otherIterator = other.iterator();
+        while (otherIterator.hasNext())
+            add(otherIterator.next());
     }
 
     public DynamicArrayBalanced(List<T> list, int initialCapacity){
@@ -134,11 +134,11 @@ public class DynamicArrayBalanced<T> implements List<T> {
         return string;
     }
 
-    public boolean equals(DynamicArrayBalanced<T> other) {
-        if (other == null || size != other.size)
+    public boolean equals(Object other) {
+        if (!(other instanceof DynamicArrayBalanced<?>) || ((DynamicArrayBalanced<?>) other).size != size)
             return false;
         for (int i = 0; i < size; i++)
-            if (!data[i].equals(other.data[i]))
+            if (!data[i].equals(((DynamicArrayBalanced<?>) other).data[i]))
                 return false;
         return true;
     }
