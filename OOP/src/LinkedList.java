@@ -36,8 +36,7 @@ public class LinkedList<T> implements List<T>{
     public void addFirst(T element) {
         if (element == null)
             return;
-        Link<T> addition = new Link<T>(element, first);
-        first = addition;
+        first = new Link<T>(element, first);
     }
 
     public void add(T element) {

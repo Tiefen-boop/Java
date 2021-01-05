@@ -1,15 +1,15 @@
 public class SetAsDynamicArray<T> implements Set<T> {
     //fields
-    private List<T> dynamicArray;
+    private List<T> data;
 
     //constructors
     public SetAsDynamicArray(){
-         dynamicArray = new DynamicArrayBalanced<T>();
+         data = new DynamicArrayBalanced<T>();
     }
 
     //copy constructor
     public SetAsDynamicArray(Set<T> other){
-        dynamicArray = new DynamicArrayBalanced<T>();
+        data = new DynamicArrayBalanced<T>();
         Iterator<T> otherIterator = other.iterator();
         while (otherIterator.hasNext())
             add(otherIterator.next());
@@ -17,22 +17,22 @@ public class SetAsDynamicArray<T> implements Set<T> {
 
     //methods
     public Iterator<T> iterator() {
-        return dynamicArray.iterator();
+        return data.iterator();
     }
 
     public int size() {
-        return dynamicArray.size();
+        return data.size();
     }
 
     public boolean add(T element) {
-        if (dynamicArray.contains(element))
+        if (data.contains(element))
             return false;
-        dynamicArray.add(element);
+        data.add(element);
         return true;
     }
 
     public boolean contains(T element) {
-        return dynamicArray.contains(element);
+        return data.contains(element);
     }
 
     public boolean remove(T element) {
@@ -40,7 +40,7 @@ public class SetAsDynamicArray<T> implements Set<T> {
     }
 
     public boolean isEmpty() {
-        return dynamicArray.isEmpty();
+        return data.isEmpty();
     }
 
     public boolean equals(Object other){

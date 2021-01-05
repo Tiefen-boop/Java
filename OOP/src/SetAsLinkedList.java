@@ -1,15 +1,15 @@
 public class SetAsLinkedList<T> implements Set<T> {
     //fields
-    private List<T> linkedList;
+    private List<T> data;
 
     //constructors
     public SetAsLinkedList(){
-        linkedList = new LinkedList<T>();
+        data = new LinkedList<T>();
     }
 
     //copy constructor
     public SetAsLinkedList(Set<T> other){
-        linkedList = new LinkedList<T>();
+        data = new LinkedList<T>();
         Iterator<T> otherIterator = other.iterator();
         while (otherIterator.hasNext())
             add(otherIterator.next());
@@ -17,22 +17,22 @@ public class SetAsLinkedList<T> implements Set<T> {
 
     //methods
     public Iterator<T> iterator() {
-        return linkedList.iterator();
+        return data.iterator();
     }
 
     public int size() {
-        return linkedList.size();
+        return data.size();
     }
 
     public boolean add(T element) {
-        if (linkedList.contains(element))
+        if (data.contains(element))
             return false;
-        linkedList.add(element);
+        data.add(element);
         return true;
     }
 
     public boolean contains(T element) {
-        return linkedList.contains(element);
+        return data.contains(element);
     }
 
     public boolean remove(T element) {
@@ -40,7 +40,7 @@ public class SetAsLinkedList<T> implements Set<T> {
     }
 
     public boolean isEmpty() {
-        return linkedList.isEmpty();
+        return data.isEmpty();
     }
 
     public boolean equals(Object other){
