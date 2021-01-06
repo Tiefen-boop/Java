@@ -27,6 +27,8 @@ public class BinaryTreeNode<T> {
     }
 
     public void setData(T data){
+        if (data == null)
+            throw new IllegalArgumentException("Null argument");
         this.data = data;
     }
 
@@ -53,34 +55,30 @@ public class BinaryTreeNode<T> {
                 right.insert(element);
     }
 
-    public boolean remove(T element) {
+    public BinaryTreeNode<T> remove(T toRemove) {
         if (data == null)
             throw new IllegalArgumentException("Null argument");
-        if (data.equals(element)) {
+        BinaryTreeNode<T> returnData = null;
+        if (data.equals(toRemove)) {
             if (left != null) {
-                setData(left.getData());
-                left.remove(getData());
+                data = left.data;
+                left = left.remove(data);
             }
             else if (right != null) {
-                setData(right.getData());
-                right.remove(getData());
+                data = right.data;
+                right = right.remove(data);
             }
             else {
-                data = null;
-                return true;
+                return null;
             }
         }
-        else if (left != null && left.remove(element)) {
-            if (left.getData() == null)
-                left = null;
-            return true;
+        else if (left != null && left.contains(toRemove)) {
+            left = left.remove(toRemove);
         }
-        else if (right != null && right.remove(element)) {
-            if (right.getData() == null)
-                right = null;
-            return true;
+        else if (right != null && right.contains(toRemove)) {
+            right = right.remove(toRemove);
         }
-        return false;
+        return this;
     }
 
     public boolean contains(T element) {
@@ -112,19 +110,18 @@ public class BinaryTreeNode<T> {
     public boolean equals(Object other){
         if (!(other instanceof BinaryTreeNode<?>))
             return false;
-        boolean result = true;
         if (!data.equals(((BinaryTreeNode<?>) other).data))
-            result = false;
-        if (result) //checking if left = other.left
-            if (left != null)
-                result = left.equals(((BinaryTreeNode<?>) other).left);
-            else if (((BinaryTreeNode<?>) other).left != null)
-                result = false;
+            return false;
+        boolean result = true;
+        if (left != null)
+            result = left.equals(((BinaryTreeNode<?>) other).left);
+        else
+            result = ((BinaryTreeNode<?>) other).left == null;
         if (result) //checking if right = other.right
             if (right != null)
                 result = right.equals(((BinaryTreeNode<?>) other).right);
-            else if (((BinaryTreeNode<?>) other).right != null)
-                result = false;
+            else
+                result = ((BinaryTreeNode<?>) other).right == null;
         return result;
     }
 
@@ -132,7 +129,7 @@ public class BinaryTreeNode<T> {
         return toString("") + "\n";
     }
 
-    protected String toString(String depth) {
+    private String toString(String depth) {
         String ans = "";
         if (right != null)
             ans = ans + right.toString(depth + "  ") + "\n";
