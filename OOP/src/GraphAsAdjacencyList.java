@@ -40,7 +40,7 @@ public class GraphAsAdjacencyList extends AbstractGraph{
             j = tmp;
         }
         if (containsEdge(i, j)) {
-            adjList.get(i).remove(j);
+            adjList.get(i).remove((Integer) j);
         }
     }
 

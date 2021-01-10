@@ -111,7 +111,7 @@ public class LinkedList<T> implements List<T>{
         if (element == null || !contains(element))
             return false;
         if (first.getData().equals(element)){
-            first.setNext(first.getNext());
+            first = first.getNext();
             return true;
         }
         Link<T> curr = first;
